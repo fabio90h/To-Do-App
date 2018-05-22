@@ -1,29 +1,11 @@
 import * as actionTypes from '../actions/types';
 
-const INITIAL_STATE = {
-        text: '',
-        taskList: [],
-        completed: false,
-        id: 0,
-    };
+const INTITAL_STATE = {
+    taskList: [],
+}
 
-export default (state=INITIAL_STATE, action) => {
+export default (state = INTITAL_STATE, action) => {
     switch (action.type) {
-        case actionTypes.TASK_PROP_HOLDER:
-            return (
-                {
-                    ...state,
-                    [action.payload.props]: action.payload.value,
-                }
-            );
-        case actionTypes.TASK_TOGGLE:
-            console.log("Reducer", state)
-            return (
-                {
-                    ...state,
-                    [action.payload.props]: !action.payload.value,
-                }
-            );
         case actionTypes.TASK_SPECIFIC_TOGGLE:
             return (
                 {
@@ -42,12 +24,9 @@ export default (state=INITIAL_STATE, action) => {
                 }
             );
         case actionTypes.ADD_TASK:
-            console.log('add_task', state)
+            console.log('add_task_list', state)
             return(
                 {
-                    ...state,
-                    id: state.id + 1,
-                    text: '',
                     taskList: 
                     [
                         ...state.taskList,
@@ -61,6 +40,6 @@ export default (state=INITIAL_STATE, action) => {
                     
                 }
             );
-        default: return state;
+        default: return state
     }
-}
+};
