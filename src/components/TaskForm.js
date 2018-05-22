@@ -1,34 +1,35 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { addTask, taskHolder, taskToggle } from "../actions";
+import { addTask, taskPropHolder, taskToggle, taskSpecificToggle } from "../actions";
 
 class TaskForm extends Component {
     onSubmitHandler(event) {
         const { text } = this.props;
         event.preventDefault();
-        console.log(text)
         this.props.addTask(text);
     }
 
-    onLiClick(task) {
-        console.log('onClick',task)
-        this.props.taskToggle({props: 'completed', value: task.completed})
-    }
-
     onTaskChangeHandler(text) {
-        this.props.taskHolder(text.target.value)
+        this.props.taskPropHolder({props: 'text', value: text.target.value})
     }
 
     listOfTask = () => {
         return (
             this.props.taskList.map((task) => {
                 return (
-                    <li 
-                        onClick={this.onLiClick(task)}
-                        key={task.title}
-                    >
-                        {task.title}    
-                    </li>
+                    <li key={task.title}>
+                        <span 
+                            onClick={() => this.props.taskSpecificToggle({task, name: 'completed'})}  
+                        >
+                             {task.title}  
+                        </span>
+                        {task.completed 
+                            ? 
+                                <button>Hi</button> 
+                            : 
+                            null
+                        }  
+                    </li>          
                 );
             })
         );
@@ -51,15 +52,16 @@ class TaskForm extends Component {
 
 //Props that is brought in
 const mapStateToProps = (state) => {
-    const { taskList, text, completed } = state.task;
-    console.log(taskList, text, completed);
+    const { taskList, text, completed, id } = state.task;
+    console.log(taskList, text, completed, id);
     return (
         {
             taskList,
             text,
             completed,
+            id,
         }
     );
 };
 
-export default connect(mapStateToProps, { addTask, taskHolder, taskToggle })(TaskForm);
+export default connect(mapStateToProps, { addTask, taskPropHolder, taskToggle, taskSpecificToggle })(TaskForm);

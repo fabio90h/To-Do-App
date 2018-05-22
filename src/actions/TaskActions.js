@@ -18,11 +18,20 @@ export const taskToggle = ({ props, value }) => {
     );
 };
 
-export const taskHolder = (text) => {
+export const taskPropHolder = ({props, value}) => {
     return (
         {
-            type: actionTypes.TASK_HOLDER,
-            text,
+            type: actionTypes.TASK_PROP_HOLDER,
+            payload: {props, value},
+        }
+    );
+};
+
+export const taskSpecificToggle = ({task, name}) => {
+    return (
+        {
+            type: actionTypes.TASK_SPECIFIC_TOGGLE,
+            payload: {task, name}
         }
     );
 };
