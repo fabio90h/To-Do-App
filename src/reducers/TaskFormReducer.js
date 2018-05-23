@@ -2,8 +2,8 @@ import * as actionTypes from '../actions/types';
 
 const INITIAL_STATE = {
         text: '',
-        completed: false,
         id: 0,
+        completed: false
     };
 
 export default (state=INITIAL_STATE, action) => {
@@ -16,7 +16,7 @@ export default (state=INITIAL_STATE, action) => {
                 }
             );
         case actionTypes.TASK_TOGGLE:
-            console.log("Reducer", state)
+        console.log(action.payload.value)
             return (
                 {
                     ...state,
@@ -24,7 +24,13 @@ export default (state=INITIAL_STATE, action) => {
                 }
             );
         case actionTypes.ADD_TASK:
-            console.log('add_task_form', state)
+            if (action.text === '') {
+                return (
+                    {
+                        ...state
+                    }
+                );
+            }
             return(
                 {
                     ...state,
