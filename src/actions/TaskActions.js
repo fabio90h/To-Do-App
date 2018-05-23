@@ -1,10 +1,11 @@
 import * as actionTypes from './types';
 
-export const addTask = (task) => {
+export const addTask = (text, id) => {
     return (
         {
             type: actionTypes.ADD_TASK,
-            task,
+            text,
+            id,
         }
     );
 };
@@ -27,11 +28,29 @@ export const taskPropHolder = ({props, value}) => {
     );
 };
 
-export const taskSpecificToggle = ({task, name}) => {
+export const taskSpecificToggle = ({task, name, props}) => {
     return (
         {
             type: actionTypes.TASK_SPECIFIC_TOGGLE,
-            payload: {task, name}
+            payload: {task, name, props}
+        }
+    );
+};
+
+export const taskSpecificPropHolder = ({task, name, props}) => {
+    return (
+        {
+            type: actionTypes.TASK_SPECIFIC_PROP_HOLDER,
+            payload: {task, name, props},
+        }
+    );
+};
+
+export const taskCompleted = (task) => {
+    return (
+        {
+            type: actionTypes.TASK_COMPLETED,
+            task
         }
     );
 };

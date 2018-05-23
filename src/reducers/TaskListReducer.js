@@ -7,6 +7,7 @@ const INTITAL_STATE = {
 export default (state = INTITAL_STATE, action) => {
     switch (action.type) {
         case actionTypes.TASK_SPECIFIC_TOGGLE:
+            console.log('list', state)
             return (
                 {
                     ...state,
@@ -15,12 +16,29 @@ export default (state = INTITAL_STATE, action) => {
                             return (
                                 {
                                     ...task,
-                                    [action.payload.name]: !action.payload.task.completed, 
+                                    [action.payload.name]: !action.payload.props, 
                                 }
                             );
                         }
                         return task
                     })
+                }
+            );
+        case actionTypes.TASK_SPECIFIC_PROP_HOLDER:
+            return (
+                {
+                    taskList: state.taskList.map((task) => {
+                        if (task.id === action.payload.task.id) {
+                            return (
+                                {
+                                    ...task,
+                                    [action.payload.name]: action.payload.props,
+                                }
+                            );
+                        }
+                        return (task);
+                    })
+                        
                 }
             );
         case actionTypes.ADD_TASK:
@@ -31,13 +49,19 @@ export default (state = INTITAL_STATE, action) => {
                     [
                         ...state.taskList,
                         {
-                            title: action.task,
+                            title: action.text,
                             options: false,
-                            completed: false,
-                            id: state.id
+                            id: `${action.id}${action.text}`,
+                            edit: false,
                         }
                     ],
                     
+                }
+            );
+        case actionTypes.TASK_COMPLETED:
+            return (
+                {
+                    taskList: state.taskList.filter((single) => single.id !== action.task.id),
                 }
             );
         default: return state

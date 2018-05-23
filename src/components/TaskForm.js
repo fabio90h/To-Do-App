@@ -4,9 +4,9 @@ import { addTask, taskPropHolder, taskToggle, taskSpecificToggle } from "../acti
 
 class TaskForm extends Component {
     onSubmitHandler(event) {
-        const { text } = this.props;
+        const { text, id } = this.props;
         event.preventDefault();
-        this.props.addTask(text);
+        this.props.addTask(text, id);
     }
 
     onTaskChangeHandler(text) {
