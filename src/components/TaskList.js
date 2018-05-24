@@ -1,26 +1,33 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { addTask, taskSpecificToggle, taskSpecificPropHolder, taskCompleted } from "../actions/TaskActions";
+import { addTask, taskSpecificToggle, taskSpecificPropHolder, taskCompleted, completedRemove } from "../actions/TaskActions";
 
-class TaskList extends Component {
-    
+class TaskList extends Component { 
+
+    createDate = () => {
+        const today = new Date();
+        return `${today.getMonth()+1}/${today.getDate()}/${today.getFullYear()}`;
+    }
+
     listOfTask = () => {
-        console.log('complete', this.props.completedList);
         if (this.props.completed) {
             return(
                 this.props.completedList.map(compTask => {
+                    console.log(compTask)
                     return (
                         <li key={compTask.id}>
-                            {compTask.title}
+                            <div>{compTask.title}</div>
+                            <div>{compTask.dateCompleted}</div>
+                            <button onClick={() => {this.props.completedRemove(compTask)}}>Remove</button>
                         </li>
                     );
                 })
             );
             
         }else{
-            console.log("task", this.props.taskList);
             return (
                 this.props.taskList.map((task) => {
+                    console.log('taskList', task)
                     return (
                         <li key={task.id}>
                             {
@@ -43,7 +50,11 @@ class TaskList extends Component {
                                 </button> 
                                 : null
                             }
-                            <input type='checkbox' onChange={() => {this.props.taskCompleted(task)}}/>  
+                            <input type='checkbox' onChange={() => {
+                                this.props.taskSpecificPropHolder({task, name: 'dateCompleted', props: this.createDate()})
+                                this.props.taskCompleted(task)}
+                            }
+                            />  
                         </li>          
                     );
                 })
@@ -72,4 +83,4 @@ const mapStateToProps = (state) => {
 };
 
 
-export default connect(mapStateToProps, { addTask, taskSpecificToggle, taskSpecificPropHolder, taskCompleted })(TaskList);
+export default connect(mapStateToProps, { addTask, taskSpecificToggle, taskSpecificPropHolder, taskCompleted, completedRemove })(TaskList);

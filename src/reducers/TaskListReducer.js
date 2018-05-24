@@ -9,15 +9,14 @@ const INTITAL_STATE = {
 export default (state = INTITAL_STATE, action) => {
     switch (action.type) {
         case actionTypes.TASK_TOGGLE:
-        console.log(action.payload.value)
             return (
                 {
                     ...state,
                     [action.payload.props]: !action.payload.value,
                 }
             );
+        //Change the property of a specific task
         case actionTypes.TASK_SPECIFIC_TOGGLE:
-            console.log('list', state)
             return (
                 {
                     ...state,
@@ -71,6 +70,7 @@ export default (state = INTITAL_STATE, action) => {
                             options: false,
                             id: `${action.id}${action.text}`,
                             edit: false,
+                            dateCompleted: ''
                         }
                     ],
                     
@@ -82,8 +82,15 @@ export default (state = INTITAL_STATE, action) => {
                     ...state,
                     taskList: state.taskList.filter((single) => single.id !== action.task.id),
                     completedList: [...state.completedList,
-                        ...state.taskList.filter((completed) => completed.id === action.task.id )
+                        ...state.taskList.filter((completed) => completed.id === action.task.id ),
                     ]
+                }
+            );
+        case actionTypes.COMPLETED_REMOVE:
+            return (
+                {
+                    ...state,
+                    completedList: state.completedList.filter((singleComp) => singleComp.id !== action.completed.id),
                 }
             );
         default: return state

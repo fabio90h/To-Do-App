@@ -54,3 +54,12 @@ export const taskCompleted = (task) => {
         }
     );
 };
+
+export const completedRemove = (completed) => {
+    return (
+        {
+            type: actionTypes.COMPLETED_REMOVE,
+            completed
+        }
+    );
+};
