@@ -16,7 +16,7 @@ export default (state=INITIAL_STATE, action) => {
                 }
             );
         case actionTypes.TASK_TOGGLE:
-        console.log(action.payload.value)
+        //console.log(action.payload.value)
             return (
                 {
                     ...state,

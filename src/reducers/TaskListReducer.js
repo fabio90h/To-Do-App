@@ -1,7 +1,6 @@
 import * as actionTypes from '../actions/types';
 
 const INTITAL_STATE = {
-    completed: false,
     taskList: [],
     completedList: []
 }
@@ -79,7 +78,6 @@ export default (state = INTITAL_STATE, action) => {
         case actionTypes.TASK_COMPLETED:
             return (
                 {
-                    ...state,
                     taskList: state.taskList.filter((single) => single.id !== action.task.id),
                     completedList: [...state.completedList,
                         ...state.taskList.filter((completed) => completed.id === action.task.id ),

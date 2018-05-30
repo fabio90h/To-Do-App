@@ -1,28 +1,88 @@
-.App {
-  text-align: center;
-}
+ /* MAIN */
+  .App {
+    text-align: center;
+    border: 2px solid black;
+    width: 40%; 
+    margin-top: 40px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: white;
+  }
+  html{
+    background-color: lightgray;
+  }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-}
+/* BODY */
+  /* GENERAL */
+    ul {
+      list-style-type: none;
+      text-align: left;
+      padding: 0;
+      /* border: 2px solid blue; */
+    }
+    li{
+      padding-left: 40px;
+      padding-right: 40px;
+      font-size: 1.1em;
+      /* border: 2px solid red; */
+    }
+    /* input{
+      margin-left: 30px;
+    } */
+  /* UNCOMPLETED TASK */
+    .UncompletedTask{
+      color: blue;
+    }
+    .checkbox{
+      margin-right: 40px;
+    }
+    .editBox{
+      margin-right: 10px;
+    }
+  /* COMPLETED TASK */
+    .completedTask{
+      display: flex;
+      justify-content: space-between;
+    }
+    .completedTaskTitle{
+      margin: 0;
+      padding: 0;
+    }
+    .removeButton{
+      margin-left: 10px;
+      background-color: red;
+      align-self: center;
+      color: white;
+    }
+    .completedDate{
+      font-size: .6em;
+      color: green;
+      align-self: center;
+    }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
-}
 
-.App-title {
-  font-size: 1.5em;
-}
+/* FORM */
+  .textInputForm{
+    display: flex;
+    margin-bottom: 30px;
+    /* border: 2px solid red; */
+    /* justify-content: center; */
+    /* align-items: center; */
+  }
+  .taskText{
+    flex: 2;
+    font-size: 1.3em;
+    margin-left: 40px;
+  }
+  .addTask{
+    /* border: 2px solid green; */
+    align-self: stretch;
+    margin-right: 40px;
+  }
+  .listOption{
+    padding-left: 30px;
+  }
 
-.App-intro {
-  font-size: large;
-}
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
+
+

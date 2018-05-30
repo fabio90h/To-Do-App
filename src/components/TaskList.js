@@ -13,12 +13,10 @@ class TaskList extends Component {
         if (this.props.completed) {
             return(
                 this.props.completedList.map(compTask => {
-                    console.log(compTask)
                     return (
-                        <li key={compTask.id}>
-                            <div>{compTask.title}</div>
-                            <div>{compTask.dateCompleted}</div>
-                            <button onClick={() => {this.props.completedRemove(compTask)}}>Remove</button>
+                        <li className='completedTask' key={compTask.id}>
+                            <span className='completedTaskTitle'>{compTask.title}<button className='removeButton' onClick={() => {this.props.completedRemove(compTask)}}>Remove</button></span>
+                            <span className='completedDate'>Completed on: {compTask.dateCompleted}</span>                
                         </li>
                     );
                 })
@@ -27,17 +25,21 @@ class TaskList extends Component {
         }else{
             return (
                 this.props.taskList.map((task) => {
-                    console.log('taskList', task)
+                   // console.log('taskList', task)
                     return (
-                        <li key={task.id}>
+                        <li className='UncompletedTask' key={task.id}>
+                            <input className='checkbox' type='checkbox' onChange={() => {
+                                this.props.taskSpecificPropHolder({task, name: 'dateCompleted', props: this.createDate()})
+                                this.props.taskCompleted(task)}}
+                            />
                             {
                                 task.edit 
-                                ? <input autoFocus
+                                ? <input className='editBox' autoFocus
                                     onChange={text => this.props.taskSpecificPropHolder({task, name: 'title', props: text.target.value})}
                                     value={task.title}/> 
                                 : <span onClick={() => this.props.taskSpecificToggle({task, name: 'options', props: task.options})}>
                                 {task.title} </span>
-                            }  
+                            }    
                             {
                                 task.options
                                 ? <button 
@@ -50,11 +52,6 @@ class TaskList extends Component {
                                 </button> 
                                 : null
                             }
-                            <input type='checkbox' onChange={() => {
-                                this.props.taskSpecificPropHolder({task, name: 'dateCompleted', props: this.createDate()})
-                                this.props.taskCompleted(task)}
-                            }
-                            />  
                         </li>          
                     );
                 })
@@ -72,7 +69,8 @@ class TaskList extends Component {
 }
 
 const mapStateToProps = (state) => {
-    const { taskList, completedList, completed } = state.taskList;
+    const { taskList, completedList } = state.taskList;
+    const { completed } = state.taskForm;
     return (
         {
             taskList,
