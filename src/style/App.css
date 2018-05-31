@@ -49,7 +49,7 @@
       padding: 0;
     }
     .removeButton{
-      margin-left: 10px;
+      margin-right: 10px;
       background-color: red;
       align-self: center;
       color: white;
@@ -82,7 +82,3 @@
   .listOption{
     padding-left: 30px;
   }
-
-
-
-

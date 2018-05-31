@@ -14,9 +14,14 @@ class TaskList extends Component {
             return(
                 this.props.completedList.map(compTask => {
                     return (
+
                         <li className='completedTask' key={compTask.id}>
-                            <span className='completedTaskTitle'>{compTask.title}<button className='removeButton' onClick={() => {this.props.completedRemove(compTask)}}>Remove</button></span>
-                            <span className='completedDate'>Completed on: {compTask.dateCompleted}</span>                
+                            <span className='completedTaskTitle'>{compTask.title}</span>
+                            
+                            <span className='completedDate'>
+                                <button className='removeButton' onClick={() => {this.props.completedRemove(compTask)}}>Remove</button>
+                                Completed on: {compTask.dateCompleted}
+                            </span>                
                         </li>
                     );
                 })
