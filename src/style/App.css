@@ -1,16 +1,24 @@
  /* MAIN */
   .App {
     text-align: center;
-    border: 2px solid black;
+    box-shadow: 0 50px 100px rgba(50,50,93,.05), 0 15px 35px rgba(50,50,93,.1), 0 5px 15px rgba(0,0,0,.1);
+    padding-bottom: 20px;
     width: 40%; 
     margin-top: 40px;
     margin-left: auto;
     margin-right: auto;
-    background-color: white;
+    background-color: silver;
+    box-shadow: 0 50px 100px rgba(50,50,93,.05), 0 15px 35px rgba(50,50,93,.1), 0 5px 15px rgba(0,0,0,.1);
+
   }
   html{
-    background-color: lightgray;
+    background-color: white;
   }
+/* HEADER */
+.header{
+  padding: 20px 0;
+  background-color: silver;
+}
 
 /* BODY */
   /* GENERAL */
@@ -24,6 +32,7 @@
       padding-left: 40px;
       padding-right: 40px;
       font-size: 1.1em;
+      padding-bottom: 10px;
       /* border: 2px solid red; */
     }
     /* input{
