@@ -1,8 +1,8 @@
 # Summary
-This app is able to keep track of you to do list as well as view the task that has been completed.
+A simple application with the ability to keep track of tasks and completed task
 
 # Goal
-This project was done to get myself more familiar applying react with redux. 
+I developed this application to get more familiar with React with Redux. I used Redux to manage the states. 
 
 # Functionality
 - Ability to create a To Do List
@@ -13,3 +13,5 @@ This project was done to get myself more familiar applying react with redux.
 # Improvement
 - Ability to save the data to Firebase
 - Create Transition Animation
+- Add a login Screen for different users
+- Apply more styling
